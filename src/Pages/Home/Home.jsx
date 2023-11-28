@@ -1,7 +1,8 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { getFruits } from "../Services/FrutaService";
+import { getFruits } from "../../Services/FrutaService";
+import imagenFruta from "../../assets/frutastra.png";
 
 const Home = () => {
   const [frutas, setFrutas] = useState([]);
@@ -13,6 +14,7 @@ const Home = () => {
   const [filtroTemp, setFiltroTemp] = useState("");
 
   const getAllFruits = async () => {
+    console.log("Hola");
     const data = await getFruits();
     //console.log(data);
     setFrutas(data);
@@ -103,13 +105,22 @@ const Home = () => {
               <option value="enero">Enero</option>
               <option value="febrero">Febrero</option>
               <option value="marzo">Marzo</option>
-              {/* + */}
+              <option value="abril">Abril</option>
+              <option value="mayo">Mayo</option>
+              <option value="junio">Junio</option>
+              <option value="julio">Julio</option>
+              <option value="agosto">Agosto</option>
+              <option value="septiembre">Septiembre</option>
+              <option value="octubre">Octubre</option>
+              <option value="noviembre">Noviembre</option>
+              <option value="diciembre">Diciembre</option>
             </select>
           </label>
         </div>
-        <ul>
+        <ul id="lista">
           {frutasFiltradas.map((fruta, index) => (
             <li key={index}>
+              <img id="multifrutas" src={imagenFruta} alt={"frutaIMG"} />
               <p>{fruta.nombre}</p>
             </li>
           ))}

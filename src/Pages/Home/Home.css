@@ -1,0 +1,16 @@
+#multifrutas {
+    height:  100px;
+    width: 100px;
+}
+
+#lista {
+     list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+  
+  li {
+    margin: 10px;
+  }
