@@ -1,20 +1,20 @@
 import { Outlet } from "react-router-dom";
 import {Link} from "react-router-dom"
+import "./Layout.css";
 import Header from "../Components/Header/Header.jsx";
 //import Footer from "../Components/Footer/Footer.jsx";
 
 
 function Root() {
   return (
-    <div id="layout">
-      
-      <Link to='/home'>
+    <>
+      <Link to='/Inicio'>
       <Header />
     </Link>
-      <Outlet />
+<Outlet  />
 
      {/*<Footer />*/}
-    </div>
+    </>
   );
 }
 

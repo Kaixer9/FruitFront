@@ -1,3 +1,17 @@
 Header {
     background-color: green;
 }
+
+#fresh {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#title {
+    text-align: center;
+    text-align: center;
+    display: inline-block;
+}

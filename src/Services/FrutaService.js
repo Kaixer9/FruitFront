@@ -1,12 +1,20 @@
 import api from "./Base";
 
-async function getFruits() { 
-    console.log('Hola')
-const {data} = await api.get('/frutas')
-console.log(data)
-return data
+async function getFruits() {
+  const { data } = await api.get("/frutas");
+  console.log(data);
+  return data;
 }
 
-export {
- getFruits
+async function getFruitsId(frutasId) {
+  const { data } = await api.get(`/frutas/${frutasId}`);
+  console.log(data);
+  return data;
 }
+
+async function getRecipesId(recetasId) {
+    const {data} = await api.get(`/recetas/${recetasId}`);
+    return data;
+}
+
+export { getFruits, getFruitsId, getRecipesId };

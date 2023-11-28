@@ -4,19 +4,15 @@ import React, { useState, useEffect } from "react";
 import { getFruits } from "../../Services/FrutaService";
 import imagenFruta from "../../assets/frutastra.png";
 
-const Home = () => {
+const Inicio = () => {
   const [frutas, setFrutas] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [mostrarFrutas, setMostrarFrutas] = useState(true);
   const [mostrarVerduras, setMostrarVerduras] = useState(true);
-  //const [estacionFiltro, setEstacionFiltro] = useState("");
-  //const [mesFiltro, setMesFiltro] = useState("");
   const [filtroTemp, setFiltroTemp] = useState("");
 
   const getAllFruits = async () => {
-    console.log("Hola");
     const data = await getFruits();
-    //console.log(data);
     setFrutas(data);
   };
 
@@ -58,19 +54,9 @@ const Home = () => {
     setFiltroTemp(e.target.value);
   };
 
-  /*const handleEstacionChange = (e) => {
-    setEstacionFiltro(e.target.value);
-  };*/
-
-  /*const handleMesChange = (e) => {
-    setMesFiltro(e.target.value);
-  };*/
-
   return (
     <div>
-      <h3>FRESH</h3>
-      <div className="Buscar">
-        <h3>Busca tu fruta o verdura...</h3>
+      <div className="buscarGalería">
         <div className="busqueda">
           <input
             type="text"
@@ -120,14 +106,17 @@ const Home = () => {
         <ul id="lista">
           {frutasFiltradas.map((fruta, index) => (
             <li key={index}>
+            <Link to={`/info/${fruta.id}`}>
               <img id="multifrutas" src={imagenFruta} alt={"frutaIMG"} />
               <p>{fruta.nombre}</p>
+              </Link>
             </li>
           ))}
         </ul>
       </div>
+    
     </div>
   );
 };
 
-export default Home;
+export default Inicio;

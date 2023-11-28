@@ -1,10 +1,12 @@
 import React from 'react';
 import './Header.css'
+import fresh from '../../assets/fresh.png'
 
 const Header = () => {
   return (
     <header>
-      <h1>Verduras y Frutitas deeee Temporada</h1>
+<img id="fresh" src={fresh} alt={"frutaIMG"} />
+      <h1 id="title">Verduras y Frutas de Temporada</h1>
     </header>
   );
 };
