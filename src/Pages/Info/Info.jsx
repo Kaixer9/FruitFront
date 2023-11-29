@@ -5,9 +5,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import imagenFruta from "../../assets/frutastra.png";
 
+import NewRecipe from "../../Components/Receta/Receta.jsx";
+
 import { getFruitsId } from "../../Services/FrutaService.js";
 import { getRecipesId } from "../../Services/FrutaService.js";
 import { getUserId } from "../../Services/FrutaService.js";
+import { addRecipe } from "../../Services/FrutaService.js";
 
 const Info = () => {
   const { id } = useParams();
@@ -42,6 +45,15 @@ const Info = () => {
     }
   };
 
+  const handleAddRecipe = async (newRecipeData) => {
+    try {
+      await addRecipe(id, newRecipeData);
+      pullFruitRecipes();
+    } catch (error) {
+      console.error("Error al añadir la receta:", error.message);
+    }
+  };
+
   useEffect(() => {
     pullFruitsId();
     pullFruitRecipes();
@@ -70,6 +82,7 @@ const Info = () => {
       </div>
       <div>
         <h2>Recetas</h2>
+        <NewRecipe onSubmit={handleAddRecipe} />
         <ul>
           {receta && (
             <li key={receta.id}>

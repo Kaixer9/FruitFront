@@ -33,6 +33,9 @@ const Header = () => {
       <div className="header-right">
         <h1 id="title">Verduras y Frutas de Temporada</h1>
         </div>
+        <Link to="/perfil">
+        <img id="fresh" src={fresh} alt="Perfil" />
+      </Link>
     </header>
      <div className="header-buttons">
           <Button path="/login" text="Login" />

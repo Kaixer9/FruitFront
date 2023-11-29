@@ -11,13 +11,20 @@ async function getFruitsId(frutasId) {
 }
 
 async function getRecipesId(recetasId) {
-    const {data} = await api.get(`/recetas/${recetasId}`);
-    return data;
+  const { data } = await api.get(`/recetas/${recetasId}`);
+  return data;
 }
 
 async function getUserId(usersId) {
-  const {data} = await api.get(`/users/${usersId}`)
-  return data
+  const { data } = await api.get(`/users/${usersId}`);
+  return data;
 }
 
-export { getFruits, getFruitsId, getRecipesId, getUserId };
+async function addRecipe(recetasId, recipeData) {
+  const { data } = await api.post(`/recetas/${recetasId}`, recipeData);
+  return data;
+}
+
+asyn function Get Own Profile
+
+export { getFruits, getFruitsId, getRecipesId, getUserId, addRecipe };

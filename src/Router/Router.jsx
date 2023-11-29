@@ -4,6 +4,7 @@ import Inicio from "../Pages/Home/Home.jsx";
 import Info from '../Pages/Info/Info.jsx';
 import Registro from '../Components/Registro/Registro.jsx';
 import Login from '../Components/Login/Login.jsx';
+import Profile from '../Pages/Profile/Profile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,14 +27,10 @@ const router = createBrowserRouter([
         path: "/Login",
         element: <Login />,
       },
-      /*{
-        path: "/user",
-        element: <Profile />,
-      },*/
-      /*{
-        path: "/recetas",
-        element: <Recipes />,
-      },*/
+      {
+        path: "/user/profile",
+        element: <Profile />
+      }
     ],
 },
 ])
