@@ -17,4 +17,9 @@ async function getRecipesId(recetasId) {
     return data;
 }
 
-export { getFruits, getFruitsId, getRecipesId };
+async function getUserId(usersId) {
+  const {data} = await api.get(`/users/${usersId}`)
+  return data
+}
+
+export { getFruits, getFruitsId, getRecipesId, getUserId };
