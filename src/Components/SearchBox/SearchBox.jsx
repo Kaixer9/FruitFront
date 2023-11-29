@@ -9,7 +9,6 @@ const SearchBox = ({ onBuscar }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Enviar el término de búsqueda a la función del componente padre
     onBuscar(terminoBusqueda);
   };
 

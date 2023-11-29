@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import {Link} from "react-router-dom"
 import "./Layout.css";
 import Header from "../Components/Header/Header.jsx";
 //import Footer from "../Components/Footer/Footer.jsx";
@@ -8,12 +7,10 @@ import Header from "../Components/Header/Header.jsx";
 function Root() {
   return (
     <>
-      <Link to='/Inicio'>
       <Header />
-    </Link>
-<Outlet  />
+      <Outlet />
 
-     {/*<Footer />*/}
+      {/*<Footer />*/}
     </>
   );
 }

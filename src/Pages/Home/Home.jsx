@@ -5,6 +5,7 @@ import { getFruits } from "../../Services/FrutaService";
 import imagenFruta from "../../assets/frutastra.png";
 
 const Inicio = () => {
+  
   const [frutas, setFrutas] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [mostrarFrutas, setMostrarFrutas] = useState(true);
@@ -18,7 +19,6 @@ const Inicio = () => {
 
   useEffect(() => {
     getAllFruits();
-    // obtener frutas desde bd y asignarlas a setFrutas
   }, []);
 
   const handleBusqueda = (e) => {
@@ -80,7 +80,8 @@ const Inicio = () => {
               onChange={handleCheckboxChangeV}
             />
           </label>
-          <label>
+          </div>
+          <label id="TempoMes">
             Filtrar por Temporada o Mes:
             <select value={filtroTemp} onChange={handleFiltroTempChange}>
               <option value="">Todos</option>
@@ -102,11 +103,10 @@ const Inicio = () => {
               <option value="diciembre">Diciembre</option>
             </select>
           </label>
-        </div>
         <ul id="lista">
           {frutasFiltradas.map((fruta, index) => (
             <li key={index}>
-            <Link to={`/info/${fruta.id}`}>
+            <Link to={`/frutas/${fruta.id}`}>
               <img id="multifrutas" src={imagenFruta} alt={"frutaIMG"} />
               <p>{fruta.nombre}</p>
               </Link>

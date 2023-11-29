@@ -14,3 +14,7 @@
   li {
     margin: 10px;
   }
+
+  #tempoMes {
+    align-items: center;
+  }
