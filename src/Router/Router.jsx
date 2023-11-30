@@ -1,10 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from "react-router-dom";
 import Root from "../Layout/Layout.jsx";
 import Inicio from "../Pages/Home/Home.jsx";
-import Info from '../Pages/Info/Info.jsx';
-import Registro from '../Components/Registro/Registro.jsx';
-import Login from '../Components/Login/Login.jsx';
-import Profile from '../Pages/Profile/Profile.jsx';
+import Info from "../Pages/Info/Info.jsx";
+import Registro from "../Components/Registro/Registro.jsx";
+import Login from "../Components/Login/Login.jsx";
+import Profile from "../Pages/Profile/Profile.jsx";
+import Logout from '../Components/Logout/Logout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,12 +28,15 @@ const router = createBrowserRouter([
         path: "/Login",
         element: <Login />,
       },
+      { path: "/Logout", 
+      element: <Logout /> 
+    },
       {
         path: "/user/profile",
-        element: <Profile />
-      }
+        element: <Profile />,
+      },
     ],
-},
-])
+  },
+]);
 
-export default router
+export default router;

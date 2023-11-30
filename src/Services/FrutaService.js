@@ -25,6 +25,5 @@ async function addRecipe(recetasId, recipeData) {
   return data;
 }
 
-asyn function Get Own Profile
 
 export { getFruits, getFruitsId, getRecipesId, getUserId, addRecipe };

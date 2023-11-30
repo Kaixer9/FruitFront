@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import api from '../../Services/Base';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     // Enviar solicitud al backend para iniciar sesión
@@ -13,8 +15,13 @@ const Login = ({ onLogin }) => {
         contraseña,
       });
 
-      
-      onLogin(response.data);
+      if (onLogin) {
+        onLogin();
+      }
+      console.log(response.data);
+      localStorage.setItem('token', response.data.token);
+      navigate('/')
+      return
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }

@@ -54,11 +54,18 @@ const Inicio = () => {
     setFiltroTemp(e.target.value);
   };
 
+  
+
   return (
     <div>
+    <div id="explan">
+<span className="line1">Tu página de verduras y frutas de temporada.</span>
+  <span className="line2">Busca una para ver sus valores nutricionales</span>
+  <span className="line3">y las recetas de nuestros usuarios.</span>
+      </div>
       <div className="buscarGalería">
         <div className="busqueda">
-          <input
+          <input id="placeholder"
             type="text"
             placeholder="Buscar..."
             value={busqueda}
@@ -81,8 +88,9 @@ const Inicio = () => {
             />
           </label>
           </div>
+          <div id="Tempotext">
           <label id="TempoMes">
-            Filtrar por Temporada o Mes:
+            Filtrar por Temporada o Mes
             <select value={filtroTemp} onChange={handleFiltroTempChange}>
               <option value="">Todos</option>
               <option value="primavera">Primavera</option>
@@ -103,6 +111,7 @@ const Inicio = () => {
               <option value="diciembre">Diciembre</option>
             </select>
           </label>
+          </div>
         <ul id="lista">
           {frutasFiltradas.map((fruta, index) => (
             <li key={index}>

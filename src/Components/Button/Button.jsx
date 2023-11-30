@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+/*import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 function Button({ path, text }) {
-  return (
+  
+
+  return  (
     <div>
     <Link to={path}>
       <button>{text}</button>
@@ -10,4 +13,4 @@ function Button({ path, text }) {
   )
 }
 
-export default Button
+export default Button*/

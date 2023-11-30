@@ -8,6 +8,10 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap; 
+    align-content: center;
+    width: 60vw;
+    font-size: 25px;
+    
 }
 
   
@@ -17,4 +21,39 @@
 
   #tempoMes {
     align-items: center;
+  
   }
+
+  #Tempotext {
+    color: red;
+  }
+
+  #explan {
+    /*border: 1px solid #ccc;*/
+    float: right;
+    margin-right: 175px;
+  }
+
+  .line1,
+.line2,
+.line3 {
+  display: block;
+  word-wrap: break-word;
+  white-space: pre-line;
+  color: red;
+}
+
+.busqueda {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: red;
+}
+
+
+
+#placeholder {
+  float: center;
+  display: block;
+}

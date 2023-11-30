@@ -60,6 +60,21 @@ const Info = () => {
     pullUserId();
   }, [id]);
 
+  //https://mui.com/joy-ui/react-button/#icon-button icon favoritos en las recetas, mandar al perfil las fav
+  // o este https://mui.com/joy-ui/react-table/
+
+  //https://mui.com/joy-ui/react-table/ para que las recetas tengan un slider de horno
+
+  //https://mui.com/joy-ui/react-button/#icon-button para las recetas, que se guarden en la fruta
+
+//https://mui.com/joy-ui/react-table/ para los datos de la fruta.
+
+  //poner las frutas que están de temporada que salgan con un icono
+
+  //que se vea el avatar del usuario en fresh2 https://mui.com/joy-ui/react-avatar/
+
+
+
   return (
     <div>
       <div className="valores">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../../Services/Base';
+import { useNavigate } from "react-router-dom";
 
 const Registro = ({ onRegistro }) => {
   const [nick, setNick] = useState('');
@@ -14,8 +15,14 @@ const Registro = ({ onRegistro }) => {
         contraseña,
       });
 
-      
-      onRegistro(response.data); 
+      if (onRegistro) {
+        onRegistro();
+      }
+
+      console.log(response.data)
+      localStorage.setItem('token', response.data.token);
+      navigate('/')
+  return
     } catch (error) {
       console.error('Error al registrar:', error);
       
