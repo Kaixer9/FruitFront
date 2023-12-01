@@ -19,10 +19,11 @@ body {
   min-height: 100vh;
   flex-shrink: 0;
   border-radius: 200px 200px 0px 0px;
-  background: linear-gradient(180deg, #FFF 0%, #ABFFA9 100%);
+  background: linear-gradient(180deg, #FFF 0%, #a9ffa6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   display: inline-block;
+
 }
 

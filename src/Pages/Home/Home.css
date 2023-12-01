@@ -3,26 +3,28 @@
     width: 100px;
 }
 
-#lista {
+/*#lista {
      list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap; 
     align-content: center;
-    width: 60vw;
-    font-size: 25px;
+    width: 65vw;
+
     
 }
+*/
+
 
   
   li {
     margin: 10px;
   }
 
-  #tempoMes {
-    align-items: center;
-  
+  #filtroTempLabel {
+    color: red;
   }
+  
 
   #Tempotext {
     color: red;
@@ -34,13 +36,13 @@
     margin-right: 175px;
   }
 
-  .line1,
+.line1,
 .line2,
 .line3 {
   display: block;
   word-wrap: break-word;
   white-space: pre-line;
-  color: red;
+  color: black
 }
 
 .busqueda {
@@ -52,8 +54,28 @@
 }
 
 
-
 #placeholder {
   float: center;
   display: block;
+}
+
+#videoloop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 35vh; 
+  
+}
+
+#videoloop video {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+}
+
+#top1 {
+  position: relative;
+  overflow: hidden;
+ 
 }
