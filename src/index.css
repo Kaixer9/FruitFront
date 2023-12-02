@@ -1,18 +1,12 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(0, 182, 30, 0.87);
-  background-color: rgb(255, 255, 255);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+:root{
+  background-image: url('/src/assets/Hojas.png');
+    
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
+
 
 body {
   width: 100vw;
@@ -20,10 +14,11 @@ body {
   min-height: 100vh;
   flex-shrink: 0;
   border-radius: 200px 200px 0px 0px;
-  background: linear-gradient(180deg, #FFF 0%, #a9ffa6 100%);
+  background-color: linear-gradient(180deg, #FFF 0%, #a9ffa6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   display: inline-block;
+  z-index: 1;
 }
 

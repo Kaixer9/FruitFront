@@ -20,10 +20,17 @@ async function getUserId(usersId) {
   return data;
 }
 
-async function addRecipe(recetasId, recipeData) {
-  const { data } = await api.post(`/recetas/${recetasId}`, recipeData);
-  return data;
-}
+/*async function addRecipe(recetaData) {
+  try {
+    const { data } = await api.post("/recetas", recetaData)
+      localStorage.getItem('token', response.data.token);
+    
+    return data, localStorage.getItem('token')
+  } catch (error) {
+    console.error("Error al añadir la receta:", error.message);
+    throw error;
+  }
+}*/
 
 
 export { getFruits, getFruitsId, getRecipesId, getUserId, addRecipe };

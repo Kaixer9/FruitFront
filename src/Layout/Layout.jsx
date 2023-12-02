@@ -5,11 +5,14 @@ import Footer from "../Components/Footer/Footer.jsx";
 
 
 function Root() {
+
+
   return (
     <>
       <Header />
       <Outlet />
       <Footer />
+      
     </>
   );
 }

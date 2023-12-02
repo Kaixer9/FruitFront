@@ -3,18 +3,6 @@
     width: 100px;
 }
 
-/*#lista {
-     list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap; 
-    align-content: center;
-    width: 65vw;
-
-    
-}
-*/
-
 
   
   li {
@@ -22,20 +10,22 @@
   }
 
   #filtroTempLabel {
-    color: red;
+    font-weight: 500;
+    color: black;
 
   }
   
 
   #Tempotext {
-    color: red;
+    
     padding-bottom: 10px;
   }
 
   #explan {
     /*border: 1px solid #ccc;*/
     float: right;
-    margin-right: 175px;
+    margin-right: 200px;
+    font-weight: 600;
   }
 
 .line1,
@@ -52,7 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: red;
+  color: rgb(0, 0, 0);
 }
 
 
@@ -74,10 +64,12 @@
   width: 100%;
   height: 100%; 
   object-fit: cover;
+
+  
 }
 
 #top1 {
   position: relative;
   overflow: hidden;
- 
+  
 }

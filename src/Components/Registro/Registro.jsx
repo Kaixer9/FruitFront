@@ -6,6 +6,7 @@ const Registro = ({ onRegistro }) => {
   const [nick, setNick] = useState('');
   const [email, setEmail] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const navigate = useNavigate();
 
   const handleRegistro = async () => {
     try {

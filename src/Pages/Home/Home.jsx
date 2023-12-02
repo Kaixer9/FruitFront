@@ -75,8 +75,10 @@ const Inicio = () => {
     setFiltroTemp(e.target.value);
   };
 
+ 
+
   return (
-    <>
+    <div>
       <div id="videoloop">
         <video controls={false} loop autoPlay muted>
           <source src={compra} type="video/mp4" />
@@ -110,7 +112,11 @@ const Inicio = () => {
                   onChange={handleCheckboxChangeF}
                 />
               }
-              label="Mostrar sólo Frutas"
+              label={
+                <span>
+                  Mostrar sólo <span style={{ color: 'red' }}>Frutas</span>
+                </span>
+              }
             />
             <FormControlLabel
               control={
@@ -120,7 +126,11 @@ const Inicio = () => {
                   onChange={handleCheckboxChangeV}
                 />
               }
-              label="Mostrar sólo Verduras"
+              label={
+                <span>
+                  Mostrar sólo <span style={{ color: 'green' }}>Verduras</span>
+                </span>
+              }
             />
           </Box>
           <Box id="Tempotext">
@@ -161,7 +171,7 @@ const Inicio = () => {
           {frutasFiltradas.map((fruta, index) => (
             <Grid item xs={12} sm={3} key={index}>
               <List>
-              <Paper elevation={3} style={{ padding: "16px", textAlign: "center" }}>
+              <Paper elevation={3} style={{ padding: "16px", textAlign: "center", marginLeft: "10px" }}>
 
                 <ListItem component={Link} to={`/frutas/${fruta.id}`} button>
                   <ListItemAvatar>
@@ -175,7 +185,7 @@ const Inicio = () => {
                   </ListItemAvatar>
                   <ListItemText
                     primary={fruta.nombre}
-                    sx={{ fontSize: "16px", color: "black" }}
+                    sx={{ fontSize: "24px", color: "black", marginLeft: "20px" }}
                   />
                 </ListItem>
                 </Paper>
@@ -183,8 +193,11 @@ const Inicio = () => {
             </Grid>
           ))}
         </Grid>
-      </div>
-    </>
+       </div>
+       
+      
+       </div>
+    
   );
 };
 

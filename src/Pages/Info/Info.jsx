@@ -1,6 +1,7 @@
 import "./Info.css";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+
 import {
   Table,
   TableBody,
@@ -80,18 +81,21 @@ const Info = () => {
 
   const handleAddRecipe = async (newRecipeData) => {
     try {
-      await addRecipe(id, newRecipeData);
-      pullFruitRecipes();
+      await addRecipe(newRecipeData);
+      pullFruitRecipes(); 
+      handleCloseDialog();
     } catch (error) {
       console.error("Error al añadir la receta:", error.message);
     }
   };
+
 
   useEffect(() => {
     pullFruitsId();
     pullFruitRecipes();
     pullUserId();
   }, [id]);
+
 
   //https://mui.com/joy-ui/react-button/#icon-button icon favoritos en las recetas, mandar al perfil las fav
 
@@ -104,7 +108,7 @@ const Info = () => {
   //que se vea el avatar del usuario en fresh2 https://mui.com/joy-ui/react-avatar/
 
   return (
-    <>
+    <div>
       <div className="valores">
         <TableContainer
           component={Paper}
@@ -275,7 +279,8 @@ const Info = () => {
           )}
         </List>
       </Paper>
-    </>
+    </div>
   );
 };
+
 export default Info;
