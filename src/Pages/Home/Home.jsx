@@ -14,6 +14,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Paper,
 } from "@mui/material";
 
 import {
@@ -160,6 +161,8 @@ const Inicio = () => {
           {frutasFiltradas.map((fruta, index) => (
             <Grid item xs={12} sm={3} key={index}>
               <List>
+              <Paper elevation={3} style={{ padding: "16px", textAlign: "center" }}>
+
                 <ListItem component={Link} to={`/frutas/${fruta.id}`} button>
                   <ListItemAvatar>
                     <Avatar
@@ -175,6 +178,7 @@ const Inicio = () => {
                     sx={{ fontSize: "16px", color: "black" }}
                   />
                 </ListItem>
+                </Paper>
               </List>
             </Grid>
           ))}

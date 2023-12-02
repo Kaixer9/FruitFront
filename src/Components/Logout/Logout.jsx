@@ -9,11 +9,9 @@ const Logout = ({ onLogout }) => {
     try {
       const response = await api.post("/auth/logout");
 
-      localStorage.removeItem("token");
+      localStorage.removeItem("token", response.data.token);
 
-      if (onLogout) {
-        onLogout();
-      }
+      
 
       navigate("/");
     } catch (error) {

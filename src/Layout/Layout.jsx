@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import "./Layout.css";
 import Header from "../Components/Header/Header.jsx";
-//import Footer from "../Components/Footer/Footer.jsx";
+import Footer from "../Components/Footer/Footer.jsx";
 
 
 function Root() {
@@ -9,8 +9,7 @@ function Root() {
     <>
       <Header />
       <Outlet />
-
-      {/*<Footer />*/}
+      <Footer />
     </>
   );
 }

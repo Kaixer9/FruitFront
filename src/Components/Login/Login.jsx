@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import api from '../../Services/Base';
 import { useNavigate } from 'react-router-dom';
+import { Paper, Typography, TextField, Button, Box } from "@mui/material";
+
+
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -15,9 +18,7 @@ const Login = ({ onLogin }) => {
         contraseña,
       });
 
-      if (onLogin) {
-        onLogin();
-      }
+      
       console.log(response.data);
       localStorage.setItem('token', response.data.token);
       navigate('/')
@@ -28,16 +29,39 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <label>Email: </label>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <br />
-      <label>Contraseña: </label>
-      <input type="password" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
-      <br />
-      <button onClick={handleLogin}>Iniciar sesión</button>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "50vh",
+      }}
+    >
+      <Paper elevation={3} style={{ padding: "16px", maxWidth: "300px" }}>
+        <Typography variant="h5" align="center" gutterBottom>
+          Login
+        </Typography>
+        <TextField
+          label="Email"
+          type="email"
+          fullWidth
+          margin="normal"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Contraseña"
+          type="password"
+          fullWidth
+          margin="normal"
+          value={contraseña}
+          onChange={(e) => setContraseña(e.target.value)}
+        />
+        <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
+          Iniciar sesión
+        </Button>
+      </Paper>
+    </Box>
   );
 };
 

@@ -15,9 +15,7 @@ const Registro = ({ onRegistro }) => {
         contraseña,
       });
 
-      if (onRegistro) {
-        onRegistro();
-      }
+     
 
       console.log(response.data)
       localStorage.setItem('token', response.data.token);

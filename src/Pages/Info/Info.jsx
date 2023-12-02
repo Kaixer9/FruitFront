@@ -19,6 +19,11 @@ import {
   Typography,
   Avatar,
 } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 import { useParams } from "react-router-dom";
 import imagenFruta from "../../assets/frutastra.png";
@@ -36,6 +41,15 @@ const Info = () => {
   const [fruta, setFruta] = useState({});
   const [receta, setRecetas] = useState([]);
   const [user, setUser] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const pullFruitsId = async () => {
     try {
@@ -90,7 +104,7 @@ const Info = () => {
   //que se vea el avatar del usuario en fresh2 https://mui.com/joy-ui/react-avatar/
 
   return (
-    <div>
+    <>
       <div className="valores">
         <TableContainer
           component={Paper}
@@ -203,159 +217,32 @@ const Info = () => {
         </TableContainer>
       </div>
       <div>
-        <h2>Recetas</h2>
-        <NewRecipe onSubmit={handleAddRecipe} />
-
-    <Paper elevation={3} style={{ maxHeight: "300px", overflowY: "auto" }}>
-      <List>
-        {receta &&( 
-          <ListItem key={receta.id}>
-            {user && (
-              <div>
-                <Typography variant="subtitle1">{user.nick}</Typography>
-              </div>
-            )}
-            <ListItemText
-              primary={receta.nombre}
-              secondary={
-                <>
-                  <Typography variant="body2" color="textSecondary">
-                    Ingredientes: {receta.ingredientes}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Preparación: {receta.preparacion}
-                  </Typography>
-                </>
-              }
-            />
-          </ListItem>
-        ))}
-      </List>
-    </Paper>
-  
-      </div>
-    </div>
-  );
-};
-
-export default Info;
-
-/*return (
-  <div>
-    <div className="valores">
-      <TableContainer
-        component={Paper}
+      <Button
         style={{
-          border: "2px solid #ccc",
-          borderRadius: "8px",
-          overflow: "hidden",
+          cursor: "pointer",
+          color: "white",
+          backgroundColor: "#3498db",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          marginTop: "30px",
+          marginBottom: "30px",
         }}
+        onClick={handleOpenDialog}
       >
-        <Table style={{ color: "#ffffff", borderCollapse: "collapse" }}>
-          <TableHead>
-            <TableRow>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                Estación
-              </TableCell>
-              <TableCell>Inicio de temporada</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                Fin de temporada
-              </TableCell>
-              <TableCell>Calorías</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                Carbohidratos
-              </TableCell>
-              <TableCell>Proteínas</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                Grasas
-              </TableCell>
-              <TableCell>Vitaminas</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Avatar
-                  alt={`Imagen de ${fruta.nombre}`}
-                  src={fruta.grupo === "frutas" ? imagenFruta : imagenVerdura}
-                  sx={{ width: 80, height: 80 }}
-                />
-              </TableCell>
-              <TableCell>{fruta.nombre}</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                {fruta.estación}
-              </TableCell>
-              <TableCell>{fruta.mes_inicio}</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                {fruta.mes_fin}
-              </TableCell>
-              <TableCell>{fruta.calorías}</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                {fruta.carbohidratos}
-              </TableCell>
-              <TableCell>{fruta.proteínas}</TableCell>
-              <TableCell
-                style={{
-                  border: "1px solid #e0e0e0",
-                  padding: "8px",
-                  backgroundColor: "#ffebee",
-                }}
-              >
-                {fruta.grasas}
-              </TableCell>
-              <TableCell>{fruta.vitaminas}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
-    <div>
-      <h2>Recetas</h2>
-      <NewRecipe onSubmit={handleAddRecipe} />
+        Añade tu propia receta
+      </Button>
+        <Dialog open={openDialog} onClose={handleCloseDialog}>
+          <DialogTitle>Recetas</DialogTitle>
+          <DialogContent>
+            <NewRecipe onSubmit={handleAddRecipe} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog} color="primary">
+              Cerrar
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
 
       <Paper elevation={3} style={{ maxHeight: "300px", overflowY: "auto" }}>
         <List>
@@ -369,21 +256,26 @@ export default Info;
               <ListItemText
                 primary={receta.nombre}
                 secondary={
-                  <>
+                  <div>
+                    {user && (
+                      <Typography variant="body2" color="textSecondary">
+                        {user.nick}
+                      </Typography>
+                    )}
                     <Typography variant="body2" color="textSecondary">
                       Ingredientes: {receta.ingredientes}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
-                      Preparación: {receta.preparacion}
+                      Preparación: {receta.preparación}
                     </Typography>
-                  </>
+                  </div>
                 }
               />
             </ListItem>
           )}
         </List>
       </Paper>
-    </div>
-  </div>
-);
-*/
+    </>
+  );
+};
+export default Info;

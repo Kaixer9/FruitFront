@@ -23,11 +23,13 @@
 
   #filtroTempLabel {
     color: red;
+
   }
   
 
   #Tempotext {
     color: red;
+    padding-bottom: 10px;
   }
 
   #explan {
