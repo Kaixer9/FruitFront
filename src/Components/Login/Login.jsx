@@ -21,6 +21,7 @@ const Login = ({ onLogin }) => {
       
       console.log(response.data);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId);
       navigate('/')
       return
     } catch (error) {

@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  formGroupClasses,
 } from "@mui/material";
 import {
   Grid,
@@ -31,11 +32,12 @@ import imagenFruta from "../../assets/frutastra.png";
 import imagenVerdura from "../../assets/tomate.png";
 
 import NewRecipe from "../../Components/Receta/Receta.jsx";
-
+import {addReceta} from "../../Services/FrutaService.js"
 import { getFruitsId } from "../../Services/FrutaService.js";
-import { getRecipesId } from "../../Services/FrutaService.js";
+//import { getRecipesId } from "../../Services/FrutaService.js";
 import { getUserId } from "../../Services/FrutaService.js";
-import { addRecipe } from "../../Services/FrutaService.js";
+import { getRecipesByFruitId} from "../../Services/FrutaService.js"
+
 
 const Info = () => {
   const { id } = useParams();
@@ -43,6 +45,7 @@ const Info = () => {
   const [receta, setRecetas] = useState([]);
   const [user, setUser] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
+  const [refresh, setRefresh] = useState(true);
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -63,50 +66,76 @@ const Info = () => {
 
   const pullFruitRecipes = async () => {
     try {
-      const data = await getRecipesId(id);
+      const data = await getRecipesByFruitId(id);
+      console.log(id)
       setRecetas(data);
+      console.log(data)
     } catch (error) {
       console.error("Error al obtener las recetas:", error.message);
     }
   };
+  
+  
 
   const pullUserId = async () => {
     try {
-      const data = await getUserId(id);
+      const data = await getUserId();
+      console.log(data)
       setUser(data);
     } catch (error) {
       console.error("Error al obtener usuario", error.message);
     }
   };
 
-  const handleAddRecipe = async (newRecipeData) => {
+  
+  /*const handleFormSubmit = async (event) => {
+    event.preventDefault();
+  
     try {
-      await addRecipe(newRecipeData);
-      pullFruitRecipes(); 
-      handleCloseDialog();
+      if (!fruta || !user) {
+        console.error('Error: frutaId o userId no están definidos');
+        return;
+      }
+  
+      const recetaConIds = {
+        // Make sure to define nuevaReceta or use the appropriate state
+        ...nuevaReceta,
+        frutaId: fruta.id,
+        userId: user.id,
+      };
+  
+      const nuevaRecetaAgregada = await addReceta(recetaConIds);
+  
+      console.log('Receta agregada con éxito:', nuevaRecetaAgregada);
     } catch (error) {
-      console.error("Error al añadir la receta:", error.message);
+      console.error('Error al agregar receta:', error);
     }
-  };
+  };*/
+  
+    const handleAddRecipe = async (newRecipeData) => { //no
+      try {
+        await addReceta(newRecipeData, fruta.id);
+        
+        handleCloseDialog();
+        setRefresh(!refresh);
+      } catch (error) {
+        console.error("Error al añadir la receta:", error.message);
+      }
+    };
+
+    
 
 
   useEffect(() => {
     pullFruitsId();
     pullFruitRecipes();
     pullUserId();
-  }, [id]);
+   
+  }, [refresh]);
 
 
-  //https://mui.com/joy-ui/react-button/#icon-button icon favoritos en las recetas, mandar al perfil las fav
 
-  //que las recetas tengan un slider de horno
-
-  //https://mui.com/joy-ui/react-button/#icon-button para las recetas, que se guarden en la fruta
-
-  //poner las frutas que están de temporada que salgan con un icono
-
-  //que se vea el avatar del usuario en fresh2 https://mui.com/joy-ui/react-avatar/
-
+  
   return (
     <div>
       <div className="valores">
@@ -219,7 +248,7 @@ const Info = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
+      </div> {/* botón botón*/}
       <div>
       <Button
         style={{
@@ -232,6 +261,7 @@ const Info = () => {
           marginBottom: "30px",
         }}
         onClick={handleOpenDialog}
+       
       >
         Añade tu propia receta
       </Button>
@@ -250,7 +280,7 @@ const Info = () => {
 
       <Paper elevation={3} style={{ maxHeight: "300px", overflowY: "auto" }}>
         <List>
-          {receta && (
+          {receta && receta.map((receta) =>
             <ListItem key={receta.id}>
               {user && (
                 <div>
@@ -261,11 +291,7 @@ const Info = () => {
                 primary={receta.nombre}
                 secondary={
                   <div>
-                    {user && (
-                      <Typography variant="body2" color="textSecondary">
-                        {user.nick}
-                      </Typography>
-                    )}
+
                     <Typography variant="body2" color="textSecondary">
                       Ingredientes: {receta.ingredientes}
                     </Typography>

@@ -4,8 +4,9 @@ import Inicio from "../Pages/Home/Home.jsx";
 import Info from "../Pages/Info/Info.jsx";
 import Registro from "../Components/Registro/Registro.jsx";
 import Login from "../Components/Login/Login.jsx";
-import Profile from "../Pages/Profile/Profile.jsx";
+
 import Logout from '../Components/Logout/Logout.jsx';
+import Profile from "../Pages/Profile/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +30,16 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       { path: "/Logout", 
-      element: <Logout /> 
+      element: <Logout />,
     },
       {
-        path: "/user/profile",
+        path: "/profile",
         element: <Profile />,
       },
+      /*{
+        path: "/user/:userId", 
+        element: <UserProfile />,
+      },*/
     ],
   },
 ]);

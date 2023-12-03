@@ -77,6 +77,8 @@
 
 .header-right {
   text-align: center;
+  color: rgb(0, 165, 0);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 #title {
