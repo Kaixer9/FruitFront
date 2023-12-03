@@ -1,11 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import VF from "../../assets/VF.png";
+import pd from "../../assets/pd.png"
 import "./Header.css";
 import fresh from "../../assets/fresh.png";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+//import AppBar from "@mui/material/AppBar";
+//import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton, { iconButtonClasses } from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import avataUrl from "../../Pages/Profile/Profile"
 
 const Header = () => {
   const navigate = useNavigate();
+  const [avatarUrl, setAvatarUrl] = useState('');
+
+  const handleLogout = () => {
+    
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+
+      navigate("/");
+    
+  };
+
+  useEffect(() => {
+    const storedAvatarUrl = localStorage.getItem('avatarUrl');
+    if (storedAvatarUrl) {
+      setAvatarUrl(storedAvatarUrl);
+    }
+  }, []);
+
   return (
     <>
       <header className="header-container">
@@ -16,11 +42,36 @@ const Header = () => {
               <div id="home">Inicio</div>
             </Link>
           </div>
+
           <div className="header-right">
-            <h1 id="title">VerFrutas</h1>
-          </div>
+          <img
+        id="VF"
+        src={VF}
+        alt="ttitular"
+        style={{
+          width: '450px', 
+          height: '120px', 
           
-            <img id="fresh2" src={fresh} alt="Perfil" onClick={() => navigate("/profile")} />
+        }}/>
+          </div>
+
+          <div >
+          <Link to="/profile">
+          <img
+        id="fresh2"
+        src={avatarUrl || pd}
+        alt="Perfil"
+        style={{
+          width: '100px', 
+          height: '100px', 
+          borderRadius: '100%', 
+          overflow: 'hidden',
+          border: '2px solid #fff', 
+      boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)', 
+      cursor: 'pointer',
+        }}/>
+        </Link></div>
+      
           
         </div>
       </header>
@@ -39,7 +90,7 @@ const Header = () => {
           login
         </Button>
         <Button
-          onClick={() => navigate("/logout")}
+          onClick={() => handleLogout()}
           sx={{
             marginLeft: "auto",
             display: localStorage.getItem("token") ? "block" : "none",  backgroundColor: "#2980b9",

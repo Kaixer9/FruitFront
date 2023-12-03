@@ -88,29 +88,6 @@ const Info = () => {
   };
 
   
-  /*const handleFormSubmit = async (event) => {
-    event.preventDefault();
-  
-    try {
-      if (!fruta || !user) {
-        console.error('Error: frutaId o userId no están definidos');
-        return;
-      }
-  
-      const recetaConIds = {
-        // Make sure to define nuevaReceta or use the appropriate state
-        ...nuevaReceta,
-        frutaId: fruta.id,
-        userId: user.id,
-      };
-  
-      const nuevaRecetaAgregada = await addReceta(recetaConIds);
-  
-      console.log('Receta agregada con éxito:', nuevaRecetaAgregada);
-    } catch (error) {
-      console.error('Error al agregar receta:', error);
-    }
-  };*/
   
     const handleAddRecipe = async (newRecipeData) => { //no
       try {
@@ -123,8 +100,7 @@ const Info = () => {
       }
     };
 
-    
-
+  
 
   useEffect(() => {
     pullFruitsId();

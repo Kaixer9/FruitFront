@@ -5,6 +5,34 @@ import { getFruits } from "../../Services/FrutaService";
 import imagenFruta from "../../assets/frutastra.png";
 import imagenVerdura from "../../assets/tomate.png";
 import compra from "../../assets/compra.mp4";
+import Manzanas from "../../assets/Manzanas.png";
+import Espárragos from "../../assets/Espárragos.png";
+import Fresas from "../../assets/Fresas.png";
+import Granadas from "../../assets/Granadas.png";
+import Guayabas from "../../assets/Guayabas.png";
+import Higos from "../../assets/Higos.png";
+import Kiwis from "../../assets/Kiwis.png";
+import Lechugas from "../../assets/Lechugas.png";
+import Limones from "../../assets/Limones.png";
+import Melocotones from "../../assets/Melocotones.png";
+import Melones from "../../assets/Melones.png";
+import Naranjas from "../../assets/Naranjas.png";
+import Nísperos from "../../assets/Nísperos.png";
+import Papas from "../../assets/Papas.png";
+import Papayas from "../../assets/Papayas.png";
+import Peras from "../../assets/Peras.png";
+import Pimientos from "../../assets/Pimientos.png";
+import Plátanos from "../../assets/Plátanos.png";
+import Sandías from "../../assets/Sandías.png";
+import Uvas from "../../assets/Uvas.png";
+import Zanahorias from "../../assets/Zanahorias.png";
+import Aguacates from "../../assets/Aguacates.png";
+import Chirimoyas from "../../assets/Chirimoyas.png";
+import Calabacines from "../../assets/Calabacines.png"
+import Berenjenas from "../../assets/Berenjenas.png"
+import Coles from "../../assets/Coles.png"
+import Cebollas from "../../assets/Cebollas.png"
+
 import {
   Box,
   TextField,
@@ -32,6 +60,45 @@ const Inicio = () => {
   const [mostrarFrutas, setMostrarFrutas] = useState(true);
   const [mostrarVerduras, setMostrarVerduras] = useState(true);
   const [filtroTemp, setFiltroTemp] = useState("");
+  const [currentDate, setCurrentDate] = useState(new Date().toISOString());
+
+  const frutasImagenes = {
+    "Manzana": Manzanas,
+    "Espárrago": Espárragos,
+    "Plátanos": Plátanos,
+    "Papaya": Papayas,
+    "Mango": imagenFruta,
+    "Aguacate": Aguacates,
+    "Níspero": Nísperos,
+    "Guayaba": Guayabas,
+    "Higo": Higos,
+    "Chirimoya": Chirimoyas,
+    "Granada": Granadas,
+    "Manzana": Manzanas,
+    "Pera": Peras,
+    "Naranja": Naranjas,
+    "Uva": Uvas,
+    "Fresa": Fresas,
+    "Kiwi": Kiwis,
+    "Sandía": Sandías,
+    "Melón": Melones,
+    "Piña": imagenFruta,
+    "Limón": Limones,
+    "Melocotón": Melocotones,
+    "Papa": Papas,
+    "Zanahoria": Zanahorias,
+    "Calabacín": Calabacines,
+    "Tomate": imagenVerdura,
+    "Pimiento": Pimientos,
+    "Espárrago": Espárragos,
+    "Berenjena": Berenjenas,
+    "Col": Coles,
+    "Lechuga": Lechugas,
+    "Cebolla": Cebollas
+    
+
+    
+  };
 
   const getAllFruits = async () => {
     const data = await getFruits();
@@ -40,11 +107,22 @@ const Inicio = () => {
 
   useEffect(() => {
     getAllFruits();
+    const intervalId = setInterval(() => {
+      setCurrentDate(new Date().toISOString());
+    }, 24 * 60 * 60 * 1000); 
+
+    return () => clearInterval(intervalId); 
   }, []);
 
   const handleBusqueda = (e) => {
     setBusqueda(e.target.value);
   };
+
+  const isWithinTimeRange = frutas.map((fruta) => {
+    fruta.mes_inicio &&
+    fruta.mes_fin &&
+    currentDate >= fruta.mes_inicio &&
+    currentDate <= fruta.mes_fin;});
 
   const frutasFiltradas = frutas.filter((fruta) => {
     const filtro = fruta.nombre.toLowerCase().includes(busqueda.toLowerCase());
@@ -55,11 +133,15 @@ const Inicio = () => {
       ? fruta.grupo.toLowerCase() === "verdura"
       : fruta.grupo.toLowerCase() === "fruta";
 
+  
+
     const filtroEstacionMes = filtroTemp
       ? (fruta.estación && fruta.estación.includes(filtroTemp)) ||
         (fruta.mes_inicio && fruta.mes_inicio.includes(filtroTemp)) ||
         (fruta.mes_fin && fruta.mes_fin.includes(filtroTemp))
       : true;
+
+
 
     return filtro && (filtroGrupoF || filtroGrupoV) && filtroEstacionMes;
   });
@@ -75,7 +157,7 @@ const Inicio = () => {
     setFiltroTemp(e.target.value);
   };
 
- 
+  
 
   return (
     <div>
@@ -168,31 +250,38 @@ const Inicio = () => {
         </Box>
 
         <Grid container spacing={2}>
-          {frutasFiltradas.map((fruta, index) => (
-            <Grid item xs={12} sm={3} key={index}>
-              <List>
-              <Paper elevation={3} style={{ padding: "16px", textAlign: "center", marginLeft: "10px" }}>
-
+        {frutasFiltradas.map((fruta, index) => (
+          <Grid item xs={12} sm={3} key={index}>
+            <List>
+              <Paper
+                elevation={3}
+                style={{
+                  padding: '16px',
+                  textAlign: 'center',
+                  marginLeft: '10px',
+                  backgroundColor: isWithinTimeRange ? '#CCFFC9' : '#FF8091',
+                }}
+              >
                 <ListItem component={Link} to={`/frutas/${fruta.id}`} button>
                   <ListItemAvatar>
                     <Avatar
                       alt={`Imagen de ${fruta.grupo}`}
-                      src={
-                        fruta.grupo === "fruta" ? imagenFruta : imagenVerdura
-                      }
-                      style={{ width: '80px', height: '80px' }}
-                    />
+                      src={frutasImagenes[fruta.nombre] || imagenFruta}
+
+              style={{ width: '80px', height: '80px' }}
+                     
+                     />
                   </ListItemAvatar>
-                  <ListItemText
+                  <div id='LIT'><ListItemText 
                     primary={fruta.nombre}
-                    sx={{ fontSize: "24px", color: "black", marginLeft: "20px" }}
-                  />
+                    sx={{ color: 'black', marginLeft: '20px' }}
+                  /></div>
                 </ListItem>
-                </Paper>
-              </List>
-            </Grid>
-          ))}
-        </Grid>
+              </Paper>
+            </List>
+          </Grid>
+        ))}
+      </Grid>
        </div>
        
       
