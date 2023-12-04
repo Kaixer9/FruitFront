@@ -58,7 +58,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 35vh; 
+  height: 35vh;
   
 }
 
@@ -67,16 +67,10 @@
   height: 100%; 
   object-fit: cover;
 
-  
 }
 
 #top1 {
   position: relative;
   overflow: hidden;
-  
 }
 
-#LIT {
-
-
-}

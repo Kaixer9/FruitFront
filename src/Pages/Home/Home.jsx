@@ -28,10 +28,10 @@ import Uvas from "../../assets/Uvas.png";
 import Zanahorias from "../../assets/Zanahorias.png";
 import Aguacates from "../../assets/Aguacates.png";
 import Chirimoyas from "../../assets/Chirimoyas.png";
-import Calabacines from "../../assets/Calabacines.png"
-import Berenjenas from "../../assets/Berenjenas.png"
-import Coles from "../../assets/Coles.png"
-import Cebollas from "../../assets/Cebollas.png"
+import Calabacines from "../../assets/Calabacines.png";
+import Berenjenas from "../../assets/Berenjenas.png";
+import Coles from "../../assets/Coles.png";
+import Cebollas from "../../assets/Cebollas.png";
 
 import {
   Box,
@@ -63,41 +63,36 @@ const Inicio = () => {
   const [currentDate, setCurrentDate] = useState(new Date().toISOString());
 
   const frutasImagenes = {
-    "Manzana": Manzanas,
-    "Espárrago": Espárragos,
-    "Plátanos": Plátanos,
-    "Papaya": Papayas,
-    "Mango": imagenFruta,
-    "Aguacate": Aguacates,
-    "Níspero": Nísperos,
-    "Guayaba": Guayabas,
-    "Higo": Higos,
-    "Chirimoya": Chirimoyas,
-    "Granada": Granadas,
-    "Manzana": Manzanas,
-    "Pera": Peras,
-    "Naranja": Naranjas,
-    "Uva": Uvas,
-    "Fresa": Fresas,
-    "Kiwi": Kiwis,
-    "Sandía": Sandías,
-    "Melón": Melones,
-    "Piña": imagenFruta,
-    "Limón": Limones,
-    "Melocotón": Melocotones,
-    "Papa": Papas,
-    "Zanahoria": Zanahorias,
-    "Calabacín": Calabacines,
-    "Tomate": imagenVerdura,
-    "Pimiento": Pimientos,
-    "Espárrago": Espárragos,
-    "Berenjena": Berenjenas,
-    "Col": Coles,
-    "Lechuga": Lechugas,
-    "Cebolla": Cebollas
-    
-
-    
+    Manzana: Manzanas,
+    Espárrago: Espárragos,
+    Plátano: Plátanos,
+    Papaya: Papayas,
+    Mango: imagenFruta,
+    Aguacate: Aguacates,
+    Níspero: Nísperos,
+    Guayaba: Guayabas,
+    Higo: Higos,
+    Chirimoya: Chirimoyas,
+    Granada: Granadas,
+    Pera: Peras,
+    Naranja: Naranjas,
+    Uva: Uvas,
+    Fresa: Fresas,
+    Kiwi: Kiwis,
+    Sandía: Sandías,
+    Melón: Melones,
+    Piña: imagenFruta,
+    Limón: Limones,
+    Melocotón: Melocotones,
+    Papa: Papas,
+    Zanahoria: Zanahorias,
+    Calabacín: Calabacines,
+    Tomate: imagenVerdura,
+    Pimiento: Pimientos,
+    Berenjena: Berenjenas,
+    Col: Coles,
+    Lechuga: Lechugas,
+    Cebolla: Cebollas,
   };
 
   const getAllFruits = async () => {
@@ -109,20 +104,42 @@ const Inicio = () => {
     getAllFruits();
     const intervalId = setInterval(() => {
       setCurrentDate(new Date().toISOString());
-    }, 24 * 60 * 60 * 1000); 
+    }, 24 * 60 * 60 * 1000);
 
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleBusqueda = (e) => {
     setBusqueda(e.target.value);
   };
 
-  const isWithinTimeRange = frutas.map((fruta) => {
-    fruta.mes_inicio &&
-    fruta.mes_fin &&
-    currentDate >= fruta.mes_inicio &&
-    currentDate <= fruta.mes_fin;});
+  const withinRange = frutas.filter((fruta) => {
+    if (fruta.mes_inicio && fruta.mes_fin) {
+      const months = [
+        "enero",
+        "febrero",
+        "marzo",
+        "abril",
+        "mayo",
+        "junio",
+        "julio",
+        "agosto",
+        "septiembre",
+        "octubre",
+        "noviembre",
+        "diciembre",
+      ];
+      const currentMonthIndex = new Date().getMonth();
+      const startMonthIndex = months.indexOf(fruta.mes_inicio.toLowerCase());
+      const endMonthIndex = months.indexOf(fruta.mes_fin.toLowerCase());
+
+      return (
+        currentMonthIndex >= startMonthIndex &&
+        currentMonthIndex <= endMonthIndex
+      );
+    }
+    return false;
+  });
 
   const frutasFiltradas = frutas.filter((fruta) => {
     const filtro = fruta.nombre.toLowerCase().includes(busqueda.toLowerCase());
@@ -133,15 +150,11 @@ const Inicio = () => {
       ? fruta.grupo.toLowerCase() === "verdura"
       : fruta.grupo.toLowerCase() === "fruta";
 
-  
-
     const filtroEstacionMes = filtroTemp
       ? (fruta.estación && fruta.estación.includes(filtroTemp)) ||
         (fruta.mes_inicio && fruta.mes_inicio.includes(filtroTemp)) ||
         (fruta.mes_fin && fruta.mes_fin.includes(filtroTemp))
       : true;
-
-
 
     return filtro && (filtroGrupoF || filtroGrupoV) && filtroEstacionMes;
   });
@@ -156,8 +169,6 @@ const Inicio = () => {
   const handleFiltroTempChange = (e) => {
     setFiltroTemp(e.target.value);
   };
-
-  
 
   return (
     <div>
@@ -195,8 +206,8 @@ const Inicio = () => {
                 />
               }
               label={
-                <span>
-                  Mostrar sólo <span style={{ color: 'red' }}>Frutas</span>
+                <span style={{ fontWeight: "600" }}>
+                  Mostrar sólo <span style={{ color: "red" }}>Frutas</span>
                 </span>
               }
             />
@@ -209,15 +220,15 @@ const Inicio = () => {
                 />
               }
               label={
-                <span>
-                  Mostrar sólo <span style={{ color: 'green' }}>Verduras</span>
+                <span style={{ fontWeight: "600" }}>
+                  Mostrar sólo <span style={{ color: "green" }}>Verduras</span>
                 </span>
               }
             />
           </Box>
           <Box id="Tempotext">
             <FormControl style={{ width: "300px" }}>
-              <InputLabel id="filtroTempLabel">
+              <InputLabel id="filtroTempLabel" style={{ fontWeight: "500" }}>
                 Filtrar por Temporada o Mes
               </InputLabel>
               <Select
@@ -249,44 +260,51 @@ const Inicio = () => {
           </Box>
         </Box>
 
-        <Grid container spacing={2}>
-        {frutasFiltradas.map((fruta, index) => (
-          <Grid item xs={12} sm={3} key={index}>
-            <List>
-              <Paper
-                elevation={3}
-                style={{
-                  padding: '16px',
-                  textAlign: 'center',
-                  marginLeft: '10px',
-                  backgroundColor: isWithinTimeRange ? '#CCFFC9' : '#FF8091',
-                }}
-              >
-                <ListItem component={Link} to={`/frutas/${fruta.id}`} button>
-                  <ListItemAvatar>
-                    <Avatar
-                      alt={`Imagen de ${fruta.grupo}`}
-                      src={frutasImagenes[fruta.nombre] || imagenFruta}
-
-              style={{ width: '80px', height: '80px' }}
-                     
-                     />
-                  </ListItemAvatar>
-                  <div id='LIT'><ListItemText 
-                    primary={fruta.nombre}
-                    sx={{ color: 'black', marginLeft: '20px' }}
-                  /></div>
-                </ListItem>
-              </Paper>
-            </List>
-          </Grid>
-        ))}
-      </Grid>
-       </div>
-       
-      
-       </div>
-    
+        <Grid id="letras" container spacing={2}>
+          {frutasFiltradas.map((fruta, index) => (
+            <Grid item xs={12} sm={3} key={index}>
+              <List>
+                <Paper
+                  elevation={3}
+                  style={{
+                    padding: "16px",
+                    textAlign: "center",
+                    marginLeft: "10px",
+                    backgroundColor: withinRange.includes(fruta)
+                      ? "#CCFFC9"
+                      : "#FF8091",
+                  }}
+                >
+                  <ListItem component={Link} to={`/frutas/${fruta.id}`} button>
+                    <ListItemAvatar>
+                      <Avatar
+                        alt={`Imagen de ${fruta.nombre}`}
+                        src={frutasImagenes[fruta.nombre] || imagenFruta}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          borderRadius: "100%",
+                          overflow: "hidden",
+                          border: "2px solid #fff",
+                          boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)",
+                          background: "white",
+                        }}
+                      />
+                    </ListItemAvatar>
+                    <div id="LIT">
+                      <ListItemText
+                        primary={fruta.nombre}
+                        sx={{ color: "black", marginLeft: "20px" }}
+                      />
+                    </div>
+                  </ListItem>
+                </Paper>
+              </List>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+    </div>
   );
 };
 

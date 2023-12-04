@@ -27,9 +27,37 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 
+
 import { useParams } from "react-router-dom";
 import imagenFruta from "../../assets/frutastra.png";
 import imagenVerdura from "../../assets/tomate.png";
+import Manzanas from "../../assets/Manzanas.png";
+import Espárragos from "../../assets/Espárragos.png";
+import Fresas from "../../assets/Fresas.png";
+import Granadas from "../../assets/Granadas.png";
+import Guayabas from "../../assets/Guayabas.png";
+import Higos from "../../assets/Higos.png";
+import Kiwis from "../../assets/Kiwis.png";
+import Lechugas from "../../assets/Lechugas.png";
+import Limones from "../../assets/Limones.png";
+import Melocotones from "../../assets/Melocotones.png";
+import Melones from "../../assets/Melones.png";
+import Naranjas from "../../assets/Naranjas.png";
+import Nísperos from "../../assets/Nísperos.png";
+import Papas from "../../assets/Papas.png";
+import Papayas from "../../assets/Papayas.png";
+import Peras from "../../assets/Peras.png";
+import Pimientos from "../../assets/Pimientos.png";
+import Plátanos from "../../assets/Plátanos.png";
+import Sandías from "../../assets/Sandías.png";
+import Uvas from "../../assets/Uvas.png";
+import Zanahorias from "../../assets/Zanahorias.png";
+import Aguacates from "../../assets/Aguacates.png";
+import Chirimoyas from "../../assets/Chirimoyas.png";
+import Calabacines from "../../assets/Calabacines.png"
+import Berenjenas from "../../assets/Berenjenas.png"
+import Coles from "../../assets/Coles.png"
+import Cebollas from "../../assets/Cebollas.png"
 
 import NewRecipe from "../../Components/Receta/Receta.jsx";
 import {addReceta} from "../../Services/FrutaService.js"
@@ -46,6 +74,43 @@ const Info = () => {
   const [user, setUser] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [refresh, setRefresh] = useState(true);
+
+  
+  const frutasImagenes = {
+    "Manzana": Manzanas,
+    "Espárrago": Espárragos,
+    "Plátano": Plátanos,
+    "Papaya": Papayas,
+    "Mango": imagenFruta,
+    "Aguacate": Aguacates,
+    "Níspero": Nísperos,
+    "Guayaba": Guayabas,
+    "Higo": Higos,
+    "Chirimoya": Chirimoyas,
+    "Granada": Granadas,
+    "Pera": Peras,
+    "Naranja": Naranjas,
+    "Uva": Uvas,
+    "Fresa": Fresas,
+    "Kiwi": Kiwis,
+    "Sandía": Sandías,
+    "Melón": Melones,
+    "Piña": imagenFruta,
+    "Limón": Limones,
+    "Melocotón": Melocotones,
+    "Papa": Papas,
+    "Zanahoria": Zanahorias,
+    "Calabacín": Calabacines,
+    "Tomate": imagenVerdura,
+    "Pimiento": Pimientos,
+    "Berenjena": Berenjenas,
+    "Col": Coles,
+    "Lechuga": Lechugas,
+    "Cebolla": Cebollas
+    
+
+    
+  };
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -89,7 +154,7 @@ const Info = () => {
 
   
   
-    const handleAddRecipe = async (newRecipeData) => { //no
+    const handleAddRecipe = async (newRecipeData) => { 
       try {
         await addReceta(newRecipeData, fruta.id);
         
@@ -175,8 +240,12 @@ const Info = () => {
                 <TableCell>
                   <Avatar
                     alt={`Imagen de ${fruta.nombre}`}
-                    src={fruta.grupo === "frutas" ? imagenFruta : imagenVerdura}
-                    sx={{ width: 80, height: 80 }}
+                    src={frutasImagenes[fruta.nombre ] || imagenFruta }
+                    sx={{ width: 80, height: 80, borderRadius: "100%",
+                    overflow: "hidden",
+                    border: "2px solid #fff",
+                    boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)",
+                  background: "white"}}
                   />
                 </TableCell>
                 <TableCell>{fruta.nombre}</TableCell>
@@ -255,28 +324,29 @@ const Info = () => {
       </div>
 
       <Paper elevation={3} style={{ maxHeight: "300px", overflowY: "auto" }}>
-        <List>
+        <List><div style={{fontFamily: "cursive", fontSize: "24px" }}>Recetas de {fruta.nombre}</div>
           {receta && receta.map((receta) =>
             <ListItem key={receta.id}>
               {user && (
                 <div>
-                  <Typography variant="subtitle1">{user.nick}</Typography>
+                  <Typography variant="subtitle1" style={{ padding: '10px', color: "blue" }}>{user.nick}</Typography>
                 </div>
               )}
-              <ListItemText
-                primary={receta.nombre}
+              <ListItemText 
+                primary={receta.nombre} 
                 secondary={
                   <div>
 
-                    <Typography variant="body2" color="textSecondary">
-                      Ingredientes: {receta.ingredientes}
+                    <Typography variant="body1"  sx={{paddingRight: "800px", color: "brown"}}>
+                      Ingredientes: {receta.ingredientes} 
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body1" color= "black" > 
                       Preparación: {receta.preparación}
-                    </Typography>
-                  </div>
+                      
+                    </Typography> </div> 
                 }
-              />
+              /><img src={frutasImagenes[fruta.nombre ] || imagenFruta } style={{width: '100px', height: '100px'}}/>
+              
             </ListItem>
           )}
         </List>

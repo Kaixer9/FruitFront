@@ -70,6 +70,7 @@ const Header = () => {
       boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)', 
       cursor: 'pointer',
         }}/>
+        
         </Link></div>
       
           
@@ -92,7 +93,7 @@ const Header = () => {
         <Button
           onClick={() => handleLogout()}
           sx={{
-            marginLeft: "auto",
+            marginLeft: "auto", marginBottom: "10px",
             display: localStorage.getItem("token") ? "block" : "none",  backgroundColor: "#2980b9",
             color: "white",
             "&:hover": {
